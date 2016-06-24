@@ -59,7 +59,7 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 	
 	# add cn-no-route
 	if [ -z "$NO_CN_ROUTE" ]; then
-	        curl -o /tmp/route.txt https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt
+		curl -o /tmp/route.txt https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt
 		sed -i '/route = /d' /etc/ocserv/ocserv.conf
 		echo '# ocserv-cn-no-route' > /etc/ocserv/ocserv.conf
 		cat /tmp/route.txt >> /etc/ocserv/ocserv.conf
@@ -78,7 +78,3 @@ iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 600 /dev/net/tun
-
-# Run OpennConnect Server
-#exec "$@"
-
