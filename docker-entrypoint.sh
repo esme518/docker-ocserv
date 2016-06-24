@@ -78,3 +78,6 @@ iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 600 /dev/net/tun
+
+# Run OpennConnect Server
+exec ocserv -c /etc/ocserv/ocserv.conf -f
