@@ -1,3 +1,7 @@
+#
+# Dockerfile for ocserv
+# 
+
 FROM debian:jessie
 
 # Install runtime packages
@@ -73,7 +77,8 @@ RUN set -x \
 WORKDIR /etc/ocserv
 
 COPY docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 443
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["ocserv", "-c", "/etc/ocserv/ocserv.conf", "-f"]
