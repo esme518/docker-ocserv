@@ -16,7 +16,6 @@ RUN buildDeps=" \
 		autoconf \
 		autogen \
 		ca-certificates \
-		curl \
 		gcc \
 		gperf \
 		libev-dev \
@@ -32,7 +31,7 @@ RUN buildDeps=" \
 		xz-utils \
 	"; \
 	set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
+	&& apt-get update && apt-get install -y curl $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
 	&& LZ4_VERSION=`curl "https://github.com/Cyan4973/lz4/releases/latest" | sed -n 's/^.*tag\/\(.*\)".*/\1/p'` \
 	&& curl -SL "https://github.com/Cyan4973/lz4/archive/$LZ4_VERSION.tar.gz" -o lz4.tar.gz \
 	&& mkdir -p /usr/src/lz4 \
