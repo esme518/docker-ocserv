@@ -78,4 +78,3 @@ COPY docker-entrypoint.sh /entrypoint.sh
 EXPOSE 443
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["ocserv", "-c", "/etc/ocserv/ocserv.conf", "-f"]
