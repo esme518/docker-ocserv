@@ -56,6 +56,15 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 		echo "Create test user 'test' with password 'test'"
 		echo 'test:*:$5$DktJBFKobxCFd7wN$sn.bVw8ytyAaNamO.CvgBvkzDiFR6DaHdUzcif52KK7' > /etc/ocserv/ocpasswd
 	fi
+	
+	# add cn-no-route
+	if [ -z "$NO_CN_ROUTE" ]; then
+	        curl -o /tmp/route.txt https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt
+		sed -i '/route = /d' /etc/ocserv/ocserv.conf
+		echo '# ocserv-cn-no-route' > /etc/ocserv/ocserv.conf
+		cat /tmp/route.txt >> /etc/ocserv/ocserv.conf
+		rm -fr /tmp/route.txt
+	fi
 fi
 
 # Open ipv4 ip forward
