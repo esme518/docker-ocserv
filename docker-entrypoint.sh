@@ -59,7 +59,7 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 	
 	# add cn-no-route
 	if [ -z "$NO_CN_ROUTE" ]; then
-		curl -o /tmp/route.txt https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt
+		curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
 		sed -i '/route = /d' /etc/ocserv/ocserv.conf
 		echo '# ocserv-cn-no-route' > /etc/ocserv/ocserv.conf
 		cat /tmp/route.txt >> /etc/ocserv/ocserv.conf
