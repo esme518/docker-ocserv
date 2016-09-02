@@ -61,7 +61,6 @@ RUN set -x \
 WORKDIR /etc/ocserv
 
 COPY All /etc/ocserv/config-per-group/All
-
 COPY docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 443
