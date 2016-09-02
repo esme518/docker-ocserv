@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# add cn-no-route
+echo "add cn-no-route"
+curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
+cat /tmp/route.txt > /etc/ocserv/config-per-group/Surf
+rm -fr /tmp/route.txt
+
 if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-cert.pem ]; then
 	# Check environment variables
 	if [ -z "$CA_CN" ]; then
@@ -55,17 +61,7 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	# Create a test user
 	if [ -z "$NO_TEST_USER" ] && [ ! -f /etc/ocserv/ocpasswd ]; then
 		echo "Create test user 'test' with password 'test'"
-		echo 'test:*:$5$DktJBFKobxCFd7wN$sn.bVw8ytyAaNamO.CvgBvkzDiFR6DaHdUzcif52KK7' > /etc/ocserv/ocpasswd
-	fi
-	
-	# add cn-no-route
-	if [ -z "$NO_CN_ROUTE" ]; then
-		echo "add cn-no-route"
-		curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
-		sed -i '/route = /d' /etc/ocserv/ocserv.conf
-		echo '# ocserv-cn-no-route' >> /etc/ocserv/ocserv.conf
-		cat /tmp/route.txt >> /etc/ocserv/ocserv.conf
-		rm -fr /tmp/route.txt
+		echo 'test:Surf,All:$5$DktJBFKobxCFd7wN$sn.bVw8ytyAaNamO.CvgBvkzDiFR6DaHdUzcif52KK7' > /etc/ocserv/ocpasswd
 	fi
 fi
 
