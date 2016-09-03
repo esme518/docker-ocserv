@@ -17,11 +17,11 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	fi
 
 	if [ -z "$CA_DAYS" ]; then
-		CA_DAYS=3650
+		CA_DAYS=3652
 	fi
 
 	if [ -z "$SRV_CN" ]; then
-		SRV_CN="VPN server"
+		SRV_CN="VPN Server"
 	fi
 
 	if [ -z "$SRV_URL" ]; then
@@ -33,7 +33,7 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	fi
 
 	if [ -z "$SRV_DAYS" ]; then
-		SRV_DAYS=3650
+		SRV_DAYS=3652
 	fi
 
 	# No certification found, generate one
