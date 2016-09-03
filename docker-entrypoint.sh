@@ -25,7 +25,7 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	fi
 
 	if [ -z "$SRV_URL" ]; then
-		SRV_CN="www.example.com"
+		SRV_URL="www.example.com"
 	fi
 
 	if [ -z "$SRV_ORG" ]; then
