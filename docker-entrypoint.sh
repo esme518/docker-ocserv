@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# add cn-no-route
-echo "add cn-no-route"
+# Set cn-no-route
+echo "Update cn-no-route"
 curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
 cat /tmp/route.txt > /etc/ocserv/config-per-group/Surf
 rm -fr /tmp/route.txt
