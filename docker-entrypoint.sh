@@ -13,14 +13,18 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	fi
 
 	if [ -z "$CA_ORG" ]; then
-		CA_ORG="Big Corp"
+		CA_ORG="X Corp"
 	fi
 
 	if [ -z "$CA_DAYS" ]; then
-		CA_DAYS=9999
+		CA_DAYS=3650
 	fi
 
 	if [ -z "$SRV_CN" ]; then
+		SRV_CN="VPN server"
+	fi
+
+	if [ -z "$SRV_URL" ]; then
 		SRV_CN="www.example.com"
 	fi
 
@@ -29,7 +33,7 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	fi
 
 	if [ -z "$SRV_DAYS" ]; then
-		SRV_DAYS=9999
+		SRV_DAYS=3650
 	fi
 
 	# No certification found, generate one
@@ -50,6 +54,7 @@ if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-
 	certtool --generate-privkey --outfile server-key.pem 
 	cat > server.tmpl <<-EOSRV
 	cn = "$SRV_CN"
+	dns_name = "$SRV_URL"
 	organization = "$SRV_ORG"
 	expiration_days = $SRV_DAYS
 	signing_key
