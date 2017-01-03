@@ -2,7 +2,7 @@
 # Dockerfile for ocserv
 # 
 
-FROM alpine:3.4
+FROM alpine
 
 ENV OC_VERSION=0.11.6
 
