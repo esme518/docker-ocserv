@@ -9,7 +9,7 @@ ENV OC_VERSION=0.11.6
 RUN buildDeps=" \
 		g++ \
 		gnutls-dev \
-		gpgme \
+		gnupg \
 		libev-dev \
 		libnl3-dev \
 		libseccomp-dev \
