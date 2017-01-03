@@ -4,7 +4,7 @@
 
 FROM alpine:3.4
 
-ENV OC_VERSION=0.11.5
+ENV OC_VERSION=0.11.6
 
 RUN buildDeps=" \
 		g++ \
