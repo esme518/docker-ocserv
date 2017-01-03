@@ -4,10 +4,9 @@
 
 FROM alpine
 
-ENV OC_VERSION=0.11.6
+ENV OC_VERSION=0.11.5
 
 RUN buildDeps=" \
-		autogen \
 		g++ \
 		gnutls-dev \
 		gpgme \
