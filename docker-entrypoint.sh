@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Set ocserv.conf
+sed -i "/^tcp-port = /{s/443/$PORT/}" /etc/ocserv/ocserv.conf
+sed -i "/^udp-port = /{s/443/$PORT/}" /etc/ocserv/ocserv.conf
+sed -i "/^ipv4-network = /{s/192.168.1.0/$IPV4/}" /etc/ocserv/ocserv.conf
+sed -i "s/192.168.1.2/$DNS/" /etc/ocserv/ocserv.conf
+
 # Set cn-no-route
 echo "Update cn-no-route"
 curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
