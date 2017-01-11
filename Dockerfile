@@ -61,9 +61,10 @@ WORKDIR /etc/ocserv
 COPY All /etc/ocserv/config-per-group/All
 COPY docker-entrypoint.sh /entrypoint.sh
 
-ENV PORT 443
-ENV IPV4 192.168.99.0
-ENV DNS  8.8.8.8
+ENV PORT     443
+ENV IPV4     192.168.99.0
+ENV IPV4MASK 255.255.255.0
+ENV DNS      8.8.8.8
 
 EXPOSE $PORT
 
