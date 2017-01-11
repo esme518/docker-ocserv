@@ -11,7 +11,7 @@ sed -i "/^dns = /{s/192.168.1.2/$DNS/}" /etc/ocserv/ocserv.conf
 echo "Update cn-no-route"
 curl -SL "https://raw.githubusercontent.com/CNMan/ocserv-cn-no-route/master/cn-no-route.txt" -o /tmp/route.txt
 cat /tmp/route.txt > /etc/ocserv/config-per-group/Surf
-rm -fr /tmp/route.txt
+rm -rf /tmp/route.txt
 
 if [ ! -f /etc/ocserv/certs/server-key.pem ] || [ ! -f /etc/ocserv/certs/server-cert.pem ]; then
 	# Check environment variables
