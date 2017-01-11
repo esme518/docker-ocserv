@@ -39,7 +39,7 @@ RUN buildDeps=" \
 	&& mkdir -p /etc/ocserv \
 	&& cp /usr/src/ocserv/doc/sample.config /etc/ocserv/ocserv.conf \
 	&& cd / \
-	&& rm -fr /usr/src/ocserv \
+	&& rm -rf /usr/src/ocserv \
 	&& apk del $buildDeps \
 	&& rm -rf /var/cache/apk/*
 
