@@ -41,7 +41,7 @@ RUN buildDeps=" \
 	&& cd / \
 	&& rm -rf /usr/src/ocserv \
 	&& apk del $buildDeps \
-	&& rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk
 
 # Setup config
 COPY groupinfo.txt /tmp/
