@@ -54,7 +54,7 @@ RUN set -x \
 	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
 	&& mkdir -p /etc/ocserv/config-per-group \
 	&& cat /tmp/groupinfo.txt >> /etc/ocserv/ocserv.conf \
-	&& rm -fr /tmp/groupinfo.txt
+	&& rm -rf /tmp/groupinfo.txt
 
 WORKDIR /etc/ocserv
 
