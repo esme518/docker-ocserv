@@ -49,7 +49,9 @@ RUN set -x \
 	&& sed -i 's/\.\/sample\.passwd/\/etc\/ocserv\/ocpasswd/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/\(max-same-clients = \)2/\110/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/\.\.\/tests/\/etc\/ocserv/' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^try-mtu-discovery = /{s/false/true/}' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/#\(compression.*\)/\1/' /etc/ocserv/ocserv.conf \
+	&& sed -i 's/#\(no-compress-limit.*\)/\1/' /etc/ocserv/ocserv.conf \
 	&& sed -i '/^tcp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
 	&& sed -i '/^udp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
 	&& sed -i '/^ipv4-network = /{s/192.168.1.0/IPV4/}' /etc/ocserv/ocserv.conf \
