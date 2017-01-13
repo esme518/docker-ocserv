@@ -50,6 +50,11 @@ RUN set -x \
 	&& sed -i 's/\(max-same-clients = \)2/\110/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/\.\.\/tests/\/etc\/ocserv/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/#\(compression.*\)/\1/' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^tcp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^udp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^ipv4-network = /{s/192.168.1.0/IPV4/}' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^ipv4-netmask = /{s/255.255.255.0/IPV4MASK/}' /etc/ocserv/ocserv.conf \
+	&& sed -i '/^dns = /{s/192.168.1.2/DNS/}' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/^route/#route/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
 	&& mkdir -p /etc/ocserv/config-per-group \
