@@ -5,7 +5,7 @@ sed -i "/^tcp-port = /{s/PORT/$PORT/}" /etc/ocserv/ocserv.conf
 sed -i "/^udp-port = /{s/PORT/$PORT/}" /etc/ocserv/ocserv.conf
 sed -i "/^ipv4-network = /{s/IPV4/$IPV4/}" /etc/ocserv/ocserv.conf
 sed -i "/^ipv4-netmask = /{s/IPV4MASK/$IPV4MASK/}" /etc/ocserv/ocserv.conf
-sed -i "/^dns = /{s/DNS/$DNS/}" /etc/ocserv/ocserv.conf
+sed -i "s/^dns = DNS/dns = $DNS\ndns = $DNS2/" /etc/ocserv/ocserv.conf
 
 # Set cn-no-route
 echo "Update cn-no-route"
