@@ -7,7 +7,6 @@ FROM alpine:3.6
 ENV OC_VERSION=0.11.9
 
 RUN buildDeps=" \
-		curl \
 		g++ \
 		gnutls-dev \
 		gpgme \
@@ -46,7 +45,7 @@ RUN buildDeps=" \
 			| xargs -r apk info --installed \
 			| sort -u \
 		)" \
-	&& apk add --virtual .run-deps $runDeps gnutls-utils iptables \
+	&& apk add --virtual .run-deps $runDeps curl gnutls-utils iptables \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk
 
