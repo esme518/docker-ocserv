@@ -22,6 +22,7 @@ RUN buildDeps=" \
 		xz \
 	"; \
 	set -x \
+	&& apk add --update curl gnutls-utils iptables \
 	&& apk add --update --virtual .build-deps $buildDeps \
 	&& curl -SL "ftp://ftp.infradead.org/pub/ocserv/ocserv-$OC_VERSION.tar.xz" -o ocserv.tar.xz \
 	&& curl -SL "ftp://ftp.infradead.org/pub/ocserv/ocserv-$OC_VERSION.tar.xz.sig" -o ocserv.tar.xz.sig \
@@ -45,7 +46,7 @@ RUN buildDeps=" \
 			| xargs -r apk info --installed \
 			| sort -u \
 		)" \
-	&& apk add --virtual .run-deps $runDeps curl gnutls-utils iptables \
+	&& apk add --virtual .run-deps $runDeps \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk
 
