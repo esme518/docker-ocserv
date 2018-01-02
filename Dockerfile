@@ -23,7 +23,7 @@ RUN buildDeps=" \
 	"; \
 	set -x \
 	&& apk add --update --virtual .build-deps $buildDeps \
-	&& apk add curl \
+	&& apk add curl gnutls-utils iptables \
 	&& curl -SL "ftp://ftp.infradead.org/pub/ocserv/ocserv-$OC_VERSION.tar.xz" -o ocserv.tar.xz \
 	&& curl -SL "ftp://ftp.infradead.org/pub/ocserv/ocserv-$OC_VERSION.tar.xz.sig" -o ocserv.tar.xz.sig \
 	&& gpg --keyserver pgp.key-server.io --recv-key 7F343FA7 \
@@ -40,14 +40,15 @@ RUN buildDeps=" \
 	&& cp /usr/src/ocserv/doc/sample.config /etc/ocserv/ocserv.conf \
 	&& cd / \
 	&& rm -rf /usr/src/ocserv \
-	&& apk del .build-deps \
 	&& runDeps="$( \
 		scanelf --needed --nobanner /usr/local/sbin/ocserv \
 			| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
 			| xargs -r apk info --installed \
 			| sort -u \
 		)" \
-	&& apk add --virtual .run-deps $runDeps gnutls-utils iptables libnl3 readline \
+	&& apk add --virtual .run-deps $runDeps \
+	&& apk del .build-deps \
+	&& apk add libnl3 readline \
 	&& rm -rf /var/cache/apk
 
 # Setup config
