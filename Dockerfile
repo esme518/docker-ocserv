@@ -39,6 +39,7 @@ RUN buildDeps=" \
 	&& cp /usr/src/ocserv/doc/sample.config /etc/ocserv/ocserv.conf \
 	&& cd / \
 	&& rm -rf /usr/src/ocserv \
+	&& apk del .build-deps \
 	&& runDeps="$( \
 		scanelf --needed --nobanner /usr/local/sbin/ocserv \
 			| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -46,7 +47,6 @@ RUN buildDeps=" \
 			| sort -u \
 		)" \
 	&& apk add --virtual .run-deps $runDeps curl gnutls-utils iptables libnl3 readline \
-	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk
 
 # Setup config
