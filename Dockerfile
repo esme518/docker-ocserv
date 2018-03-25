@@ -86,3 +86,5 @@ EXPOSE $PORT/tcp
 EXPOSE $PORT/udp
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["ocserv", "-c", "/etc/ocserv/ocserv.conf", "-f"]
