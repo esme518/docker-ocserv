@@ -1,6 +1,0 @@
-# Group Settings
-select-group = Surf[仅海外代理 Exclude CN]
-select-group = All[全局代理 All Proxy]
-default-select-group = 默认模式 Default
-auto-select-group = false
-config-per-group = /etc/ocserv/config-per-group

@@ -36,7 +36,6 @@ RUN buildDeps=" \
 	&& make \
 	&& make install \
 	&& mkdir -p /etc/ocserv \
-	&& cp /usr/src/ocserv/doc/sample.config /etc/ocserv/ocserv.conf \
 	&& cd / \
 	&& rm -rf /usr/src/ocserv \
 	&& runDeps="$( \
@@ -50,28 +49,9 @@ RUN buildDeps=" \
 	&& apk add libnl3 readline \
 	&& rm -rf /var/cache/apk
 
-# Setup config
-COPY groupinfo.txt /tmp/
-RUN set -x \
-	&& sed -i 's/\.\/sample\.passwd/\/etc\/ocserv\/ocpasswd/' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/\(max-same-clients = \)2/\110/' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/\.\.\/tests/\/etc\/ocserv/' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^try-mtu-discovery = /{s/false/true/}' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/#\(compression.*\)/\1/' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/#\(no-compress-limit.*\)/\1/' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^tcp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^udp-port = /{s/443/PORT/}' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^ipv4-network = /{s/192.168.1.0/IPV4/}' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^ipv4-netmask = /{s/255.255.255.0/IPV4MASK/}' /etc/ocserv/ocserv.conf \
-	&& sed -i '/^dns = /{s/192.168.1.2/DNS/}' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/^route/#route/' /etc/ocserv/ocserv.conf \
-	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
-	&& mkdir -p /etc/ocserv/config-per-group \
-	&& cat /tmp/groupinfo.txt >> /etc/ocserv/ocserv.conf \
-	&& rm -rf /tmp/groupinfo.txt
-
 WORKDIR /etc/ocserv
 
+COPY ocserv.conf /etc/ocserv/ocserv.conf
 COPY All /etc/ocserv/config-per-group/All
 COPY docker-entrypoint.sh /entrypoint.sh
 
