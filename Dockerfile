@@ -58,8 +58,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENV PORT     443
 ENV IPV4     10.10.10.0
 ENV IPV4MASK 255.255.255.0
-ENV DNS      8.8.8.8
-ENV DNS2     8.8.4.4
+ENV DNS      1.1.1.1
+ENV DNS2     1.0.0.1
 
 EXPOSE $PORT/tcp
 EXPOSE $PORT/udp
