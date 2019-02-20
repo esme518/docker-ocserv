@@ -2,9 +2,9 @@
 # Dockerfile for ocserv
 # 
 
-FROM alpine:3.7
+FROM alpine:3.8
 
-ENV OC_VERSION=0.12.1
+ENV OC_VERSION=0.12.2
 
 RUN buildDeps=" \
 		g++ \
