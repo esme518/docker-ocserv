@@ -2,7 +2,7 @@
 # Dockerfile for ocserv
 #
 
-FROM alpine:3.11
+FROM alpine:3.12
 
 ARG OC_VERSION="1.1.2"
 
@@ -46,7 +46,7 @@ RUN buildDeps=" \
 		)" \
 	&& apk add --virtual .run-deps $runDeps \
 	&& apk del .build-deps \
-	&& apk add libnl3 readline \
+	&& apk add libnl3 libseccomp lz4-libs readline \
 	&& rm -rf /var/cache/apk
 
 WORKDIR /etc/ocserv
